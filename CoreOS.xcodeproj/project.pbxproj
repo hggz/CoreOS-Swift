@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90BB31091DD901C400034961 /* COSystemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB31081DD901C400034961 /* COSystemInfo.swift */; };
+		90BB310C1DD901F400034961 /* COFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB310B1DD901F400034961 /* COFileManager.swift */; };
 		90DB9D861DD7EA9200C7046F /* CoreOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90DB9D7C1DD7EA9200C7046F /* CoreOS.framework */; };
 		90DB9D8B1DD7EA9200C7046F /* CoreOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DB9D8A1DD7EA9200C7046F /* CoreOSTests.swift */; };
 		90DB9D8D1DD7EA9200C7046F /* CoreOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB9D7F1DD7EA9200C7046F /* CoreOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +25,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90BB31081DD901C400034961 /* COSystemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COSystemInfo.swift; sourceTree = "<group>"; };
+		90BB310B1DD901F400034961 /* COFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COFileManager.swift; sourceTree = "<group>"; };
 		90DB9D7C1DD7EA9200C7046F /* CoreOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90DB9D7F1DD7EA9200C7046F /* CoreOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreOS.h; sourceTree = "<group>"; };
 		90DB9D801DD7EA9200C7046F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 			children = (
 				90DB9D7F1DD7EA9200C7046F /* CoreOS.h */,
 				90DB9D801DD7EA9200C7046F /* Info.plist */,
+				90BB31081DD901C400034961 /* COSystemInfo.swift */,
+				90BB310B1DD901F400034961 /* COFileManager.swift */,
 			);
 			path = CoreOS;
 			sourceTree = "<group>";
@@ -142,12 +148,14 @@
 		90DB9D731DD7EA9200C7046F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CO;
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Cat Bakery";
 				TargetAttributes = {
 					90DB9D7B1DD7EA9200C7046F = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					90DB9D841DD7EA9200C7046F = {
@@ -196,6 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90BB31091DD901C400034961 /* COSystemInfo.swift in Sources */,
+				90BB310C1DD901F400034961 /* COFileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +330,7 @@
 		90DB9D911DD7EA9200C7046F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -331,6 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.catbakery.CoreOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -338,6 +350,7 @@
 		90DB9D921DD7EA9200C7046F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -356,6 +369,7 @@
 		90DB9D941DD7EA9200C7046F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = CoreOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.catbakery.CoreOSTests;
@@ -367,6 +381,7 @@
 		90DB9D951DD7EA9200C7046F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = CoreOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.catbakery.CoreOSTests;
@@ -394,6 +409,7 @@
 				90DB9D921DD7EA9200C7046F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90DB9D931DD7EA9200C7046F /* Build configuration list for PBXNativeTarget "CoreOSTests" */ = {
 			isa = XCConfigurationList;
@@ -402,6 +418,7 @@
 				90DB9D951DD7EA9200C7046F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
