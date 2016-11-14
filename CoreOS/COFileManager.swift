@@ -60,7 +60,7 @@ open class COFileManager: NSObject {
         return NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
     }
     
-    /// Deletes a file given the destination of the file to delete. Returns if file doesn't exist.
+    /// Deletes a file given the destination of the file to delete. Returns if file doesn't exist. You can ONLY delete from the cache dir on a production app.
     ///
     /// - parameter filePath: destination of file to delete.
     open static func deleteFile(filePath: String) {
@@ -74,7 +74,7 @@ open class COFileManager: NSObject {
         }
     }
     
-    /// Copies a file from filePath to the destination path.
+    /// Copies a file from filePath to the destination path. You can ONLY copy to the cache dir on a production mobile app.
     ///
     /// - parameter filePath:        file path of file you want to copy over to destinationPath
     /// - parameter destinationPath: destination you want the file you're copying to reach. This path must contain the final destination name of the file you want to be copied.
@@ -89,7 +89,7 @@ open class COFileManager: NSObject {
         }
     }
     
-    /// Overwrites a file from filePath to the destination path by deleting the file at the destination first and then copying over the target.
+    /// Overwrites a file from filePath to the destination path by deleting the file at the destination first and then copying over the target. You can ONLY overwrite from the cache dir on a production mobile app.
     ///
     /// - parameter filePath:        file path of file you want to copy over to destinationPath
     /// - parameter destinationToOverride: destination you want the file you're copying to reach. This path must contain the final destination name of the file you want to be copied.
@@ -101,7 +101,7 @@ open class COFileManager: NSObject {
         copy(filePath: filePath, destinationPath: destinationToOverride)
     }
     
-    /// Overwrites a file from filePath to the destination path.
+    /// Overwrites a file from filePath to the destination path. You can move ONLY in the context of the cache dir on a production mobile app.
     ///
     /// - parameter filePath:        file path of file you want to copy over to destinationPath
     /// - parameter destinationToMove: destination you want the file you're copying to reach. This path must contain the final destination name of the file you want to be copied.
@@ -154,16 +154,6 @@ open class COFileManager: NSObject {
         return pathsForResources(ofType: ofType, bundle: bundle)
     }
     
-    /// Provides an array of file paths for files of a provided type at a specified bundle.
-    ///
-    /// - parameter ofType: file types to be searching for.
-    /// - parameter bundle: bundle to search for these files for.
-    ///
-    /// - returns: an array of files of the matching file type at the specified bundle.
-    open static func pathsForResources(ofType: String, bundle: Bundle) -> [String] {
-        return bundle.paths(forResourcesOfType: ofType, inDirectory: nil)
-    }
-    
     /// Provides a file path for a file at a given directory.
     ///
     /// - parameter name:      file name to be appended to a directory.
@@ -178,6 +168,38 @@ open class COFileManager: NSObject {
         return dir.appendingPathComponent(name)
     }
     
+    /// Provides the filename of a filepath with extension.
+    ///
+    /// - parameter filePath: filepath containing file whos name you want.
+    ///
+    /// - returns: name of file with extension from given filepath.
+    open static func fileNameFromFilePath(filePath: String) -> String {
+        let filePathNSString = filePath as NSString
+        return filePathNSString.lastPathComponent
+    }
+    
+    /// Provides the filename of a filepath without extension.
+    ///
+    /// - parameter filePath: filepath containing file whos name you want.
+    ///
+    /// - returns: name of file without extension from given filepath.
+    open static func fileNameFromFilePathWithoutExtension(filePath: String) -> String {
+        let filePathNSString = filePath as NSString
+        let fileNameWithExtension = filePathNSString.lastPathComponent as NSString
+        return fileNameWithExtension.deletingPathExtension
+    }
+    
+    /// Provides the directory of a filepath.
+    ///
+    /// - parameter filePath: filepath containing file in a directory you want.
+    ///
+    /// - returns: full directory path from given filepath. 
+    open static func directoryFromFilePath(filePath: String) -> String { 
+        let filePathNSString = filePath as NSString
+        let fileName = filePathNSString.lastPathComponent
+        return filePathNSString.replacingOccurrences(of: fileName, with: "")
+    }
+    
     // MARK: - Private Static Functions
     
     /// Prints error that occures during COFile operations
@@ -186,5 +208,15 @@ open class COFileManager: NSObject {
     /// - parameter error:     thrown error by operation
     fileprivate static func fileManagerError(errorKind: FileManagerError, error: Error) {
         print ("COFileManager - \(errorKind.rawValue) - \(error)")
+    }
+    
+    /// Provides an array of file paths for files of a provided type at a specified bundle.
+    ///
+    /// - parameter ofType: file types to be searching for.
+    /// - parameter bundle: bundle to search for these files for.
+    ///
+    /// - returns: an array of files of the matching file type at the specified bundle.
+    fileprivate static func pathsForResources(ofType: String, bundle: Bundle) -> [String] {
+        return bundle.paths(forResourcesOfType: ofType, inDirectory: nil)
     }
 }
