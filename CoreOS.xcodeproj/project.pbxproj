@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		90BB31091DD901C400034961 /* COSystemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB31081DD901C400034961 /* COSystemInfo.swift */; };
 		90BB310C1DD901F400034961 /* COFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB310B1DD901F400034961 /* COFileManager.swift */; };
-		90BB31151DDA442E00034961 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90BB31141DDA442E00034961 /* test.txt */; };
 		90BB31171DDA463700034961 /* COFileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BB31161DDA463700034961 /* COFileManagerTests.swift */; };
+		90BB311B1DDA5A8800034961 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90BB311A1DDA5A8800034961 /* test.txt */; };
 		90DB9D861DD7EA9200C7046F /* CoreOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90DB9D7C1DD7EA9200C7046F /* CoreOS.framework */; };
 		90DB9D8D1DD7EA9200C7046F /* CoreOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DB9D7F1DD7EA9200C7046F /* CoreOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -28,8 +28,8 @@
 /* Begin PBXFileReference section */
 		90BB31081DD901C400034961 /* COSystemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COSystemInfo.swift; sourceTree = "<group>"; };
 		90BB310B1DD901F400034961 /* COFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COFileManager.swift; sourceTree = "<group>"; };
-		90BB31141DDA442E00034961 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		90BB31161DDA463700034961 /* COFileManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COFileManagerTests.swift; sourceTree = "<group>"; };
+		90BB311A1DDA5A8800034961 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		90DB9D7C1DD7EA9200C7046F /* CoreOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90DB9D7F1DD7EA9200C7046F /* CoreOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreOS.h; sourceTree = "<group>"; };
 		90DB9D801DD7EA9200C7046F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		90BB31121DDA435000034961 /* Test Resources */ = {
 			isa = PBXGroup;
 			children = (
-				90BB31141DDA442E00034961 /* test.txt */,
+				90BB311A1DDA5A8800034961 /* test.txt */,
 			);
 			name = "Test Resources";
 			path = ../CoreOS;
@@ -206,7 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90BB31151DDA442E00034961 /* test.txt in Resources */,
+				90BB311B1DDA5A8800034961 /* test.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
