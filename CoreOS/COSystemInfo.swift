@@ -8,12 +8,12 @@
 
 import UIKit
 
-open class COSystemInfo: NSObject {
-    open static var osName = UIDevice.current.systemName
-    open static var osVersion = UIDevice.current.systemVersion
-    open static var deviceModel = UIDevice.current.model
+public struct COSystemInfo {
+    public static var osName = UIDevice.current.systemName
+    public static var osVersion = UIDevice.current.systemVersion
+    public static var deviceModel = UIDevice.current.model
     
-    open static func systemInformation() {
+    public static func systemInformation() {
         print("Device Model: \(COSystemInfo.deviceModel)\nOS Name: \(COSystemInfo.osName)\nOS Version: \(COSystemInfo.osVersion)\n")
     }
 }
