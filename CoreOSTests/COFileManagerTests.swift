@@ -26,21 +26,21 @@ class COFileManagerTests: XCTestCase {
     }
     
     func testFileExists() {
-        XCTAssert(COFileManager.fileExists(filePath: testFilePath!))
+        XCTAssert(fileExists(filePath: testFilePath!))
     }
     
     func testCurrentDirectory() {
-        let cd = COFileManager.currentDirectory()
-        XCTAssert(COFileManager.fileExists(filePath: cd))
+        let cd = currentDirectory()
+        XCTAssert(fileExists(filePath: cd))
     }
     
     func testFileNameFromFilePathWithExtension() {
-        let fileName = COFileManager.fileNameFromFilePath(filePath: testFilePath!)
+        let fileName = fileNameFromFilePath(filePath: testFilePath!)
         XCTAssert("test.txt" == fileName)
     }
     
     func testFileNameFromFilePathWithoutExtension() {
-        let fileName = COFileManager.fileNameFromFilePathWithoutExtension(filePath: testFilePath!)
+        let fileName = fileNameFromFilePathWithoutExtension(filePath: testFilePath!)
         XCTAssert("test" == fileName)
     }
     
@@ -48,66 +48,66 @@ class COFileManagerTests: XCTestCase {
         let filePathNSString = testFilePath! as NSString
         let fileName = filePathNSString.lastPathComponent
         let fileDirectory = filePathNSString.replacingOccurrences(of: fileName, with: "")
-        let directory = COFileManager.directoryFromFilePath(filePath: testFilePath!)
+        let directory = directoryFromFilePath(filePath: testFilePath!)
         XCTAssert(fileDirectory == directory)
     }
     
     func testFilePathForFile() {
-        let fileName = COFileManager.fileNameFromFilePath(filePath: testFilePath!)
-        let directory = COFileManager.directoryFromFilePath(filePath: testFilePath!)
-        let filePathForFile = COFileManager.filePathForFile(name: fileName, directory: directory)
-        XCTAssert(testFilePath! == filePathForFile)
+        let fileName = fileNameFromFilePath(filePath: testFilePath!)
+        let directory = directoryFromFilePath(filePath: testFilePath!)
+        let filePath = filePathForFile(name: fileName, directory: directory)
+        XCTAssert(testFilePath! == filePath)
     }
     
     func testContentsOfDirectory() {
-        let cd = COFileManager.currentDirectory()
-        let contentsOfDir = COFileManager.contentsOfDirectory(dir: cd)
+        let cd = currentDirectory()
+        let contentsOfDir = contentsOfDirectory(dir: cd)
         for file in contentsOfDir {
-            let filePathForFile = COFileManager.filePathForFile(name: file, directory: cd)
-            XCTAssert(COFileManager.fileExists(filePath: filePathForFile))
+            let filePath = filePathForFile(name: file, directory: cd)
+            XCTAssert(fileExists(filePath: filePath))
         }
     }
     
     func testCopyFile() {
-        let cacheDir = COFileManager.applicationCacheDirectory()
-        let fileName = COFileManager.fileNameFromFilePath(filePath: testFilePath!)
-        let newFilePath = COFileManager.filePathForFile(name: fileName, directory: cacheDir)
-        COFileManager.copy(filePath: testFilePath!, destinationPath: newFilePath)
-        XCTAssert(COFileManager.fileExists(filePath: newFilePath))
+        let cacheDir = applicationCacheDirectory()
+        let fileName = fileNameFromFilePath(filePath: testFilePath!)
+        let newFilePath = filePathForFile(name: fileName, directory: cacheDir)
+        copyFile(filePath: testFilePath!, destinationPath: newFilePath)
+        XCTAssert(fileExists(filePath: newFilePath))
     }
     
     func testDeleteFile() {
-        let cacheDir = COFileManager.applicationCacheDirectory()
-        let fileName = COFileManager.fileNameFromFilePath(filePath: testFilePath!)
-        let newFilePath = COFileManager.filePathForFile(name: fileName, directory: cacheDir)
-        COFileManager.copy(filePath: testFilePath!, destinationPath: newFilePath)
-        XCTAssert(COFileManager.fileExists(filePath: newFilePath))
-        COFileManager.deleteFile(filePath: newFilePath)
-        XCTAssert(!COFileManager.fileExists(filePath: newFilePath))
+        let cacheDir = applicationCacheDirectory()
+        let fileName = fileNameFromFilePath(filePath: testFilePath!)
+        let newFilePath = filePathForFile(name: fileName, directory: cacheDir)
+        copyFile(filePath: testFilePath!, destinationPath: newFilePath)
+        XCTAssert(fileExists(filePath: newFilePath))
+        deleteFile(filePath: newFilePath)
+        XCTAssert(!fileExists(filePath: newFilePath))
     }
     
     func testMoveFile() { 
-        let cacheDir = COFileManager.applicationCacheDirectory()
-        let fileName = COFileManager.fileNameFromFilePath(filePath: testFilePath!)
-        let newFilePath = COFileManager.filePathForFile(name: fileName, directory: cacheDir)
-        COFileManager.copy(filePath: testFilePath!, destinationPath: newFilePath)
-        XCTAssert(COFileManager.fileExists(filePath: newFilePath))
-        let documentsDir = COFileManager.applicationDocumentsDirectory()
-        let newDocumentsFilePath = COFileManager.filePathForFile(name: fileName, directory: documentsDir)
+        let cacheDir = applicationCacheDirectory()
+        let fileName = fileNameFromFilePath(filePath: testFilePath!)
+        let newFilePath = filePathForFile(name: fileName, directory: cacheDir)
+        copyFile(filePath: testFilePath!, destinationPath: newFilePath)
+        XCTAssert(fileExists(filePath: newFilePath))
+        let documentsDir = applicationDocumentsDirectory()
+        let newDocumentsFilePath = filePathForFile(name: fileName, directory: documentsDir)
         
-        if COFileManager.fileExists(filePath: newDocumentsFilePath) { // delete file if moved to documents directory
-            COFileManager.deleteFile(filePath: newDocumentsFilePath)
+        if fileExists(filePath: newDocumentsFilePath) { // delete file if moved to documents directory
+            deleteFile(filePath: newDocumentsFilePath)
         }
-        COFileManager.move(filePath: newFilePath, destinationToMove: newDocumentsFilePath)
-        XCTAssert(!COFileManager.fileExists(filePath: newFilePath))
-        XCTAssert(COFileManager.fileExists(filePath: newDocumentsFilePath))
+        moveFile(filePath: newFilePath, destinationToMove: newDocumentsFilePath)
+        XCTAssert(!fileExists(filePath: newFilePath))
+        XCTAssert(fileExists(filePath: newDocumentsFilePath))
     }
     
     func testFilePathForResource() {
-        let directory = COFileManager.directoryFromFilePath(filePath: testFilePath!)
-        let resources = COFileManager.pathsForResources(ofType: "txt", filePath: directory)
+        let directory = directoryFromFilePath(filePath: testFilePath!)
+        let resources = pathsForResources(ofType: "txt", filePath: directory)
         for file in resources {
-            XCTAssert(COFileManager.fileExists(filePath: file))
+            XCTAssert(fileExists(filePath: file))
         }
     }
 }
