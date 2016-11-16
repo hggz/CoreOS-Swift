@@ -6,7 +6,7 @@
 //  Copyright © 2016 Cat Bakery. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 fileprivate enum FileManagerError: String {
     case delete     = "Error Deleting File"
